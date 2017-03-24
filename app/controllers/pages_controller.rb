@@ -1,4 +1,14 @@
-class PagesController < ApplicationController
+class PagesController < ApplicationController 
+	skip_before_action :verify_authenticity_token
+
   def x
   end
+
+  def save_user
+  	User.new(name: params[:name], email:params[:email], age:params[:age]).save
+  	redirect_to pages_index_path, notice: 'Usuario Creado'
+
+  end
+
 end
+
